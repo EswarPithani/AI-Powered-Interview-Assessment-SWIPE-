@@ -16,25 +16,20 @@ const AppContent = () => {
   const { showWelcomeBack, interviewProgress } = state.interview;
   const { currentCandidate } = state;
   
-  // Use ref to track if we've already checked for interrupted interview
   const hasCheckedForInterruptedInterview = useRef(false);
 
   useEffect(() => {
     console.log('App loaded - Current state:', state);
-
-    // Only check for interrupted interview ONCE when the app first loads
     if (!hasCheckedForInterruptedInterview.current) {
       checkForInterruptedInterview();
       hasCheckedForInterruptedInterview.current = true;
     }
 
-    // Show welcome message if interview is in progress (but don't show modal again)
     if (currentCandidate && interviewProgress === 'in-progress' && !showWelcomeBack) {
       message.info('Welcome back! Your interview progress has been restored.');
     }
-  }, []); // Empty dependency array - only run once on mount
+  }, []); 
 
-  // Check for interrupted interview - ONLY RUNS ONCE
   const checkForInterruptedInterview = () => {
     const { interviewProgress, questions, answers, showWelcomeBack, welcomeBackShown } = state.interview;
 
@@ -47,7 +42,6 @@ const AppContent = () => {
       alreadyShown: welcomeBackShown
     });
 
-    // Show welcome back if interview was in progress and not completed
     if (currentCandidate &&
       interviewProgress === 'in-progress' &&
       questions.length > 0 &&
@@ -57,7 +51,6 @@ const AppContent = () => {
 
       console.log('Conditions met - showing welcome back modal');
       
-      // Small delay to ensure everything is loaded
       setTimeout(() => {
         actions.showWelcomeBack();
       }, 1500);
