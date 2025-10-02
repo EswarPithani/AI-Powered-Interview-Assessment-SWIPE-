@@ -3,7 +3,7 @@
 A comprehensive React application that conducts AI-powered technical interviews with resume parsing, timed questions, and candidate evaluation.
 
 ## 🚀 Live Demo
-[Add your Vercel/Netlify link here]
+Check it here - https://ai-powered-interview-assessment-swi.vercel.app/
 
 ## 📋 Project Overview
 
